@@ -110,7 +110,7 @@ db.name, db.username, db.password values are customizable.
 
 ## Usage
 - Access the application through [localhost:8080/NotesApp/](localhost:8080/NotesApp/).
-- Add note using Add button as presented
-- Edit and Delete have been displayed as icons to the bottom of each note.
-  - Delete removes the note permanently.
-  - Edit allows you to view and modify the full note content.
+- Add note using Add button as presented.
+- Click on a note to open view/edit page.
+	- Only when you input some data into the textareas, the `Save Changes` button appears.
+- Delete by clicking on delete button.
