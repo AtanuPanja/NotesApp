@@ -12,20 +12,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Notes</title>
-<link rel="stylesheet"
-	href="css/style.css" />
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 	<main class="container">
 		<h1>Your Notes</h1>
 		<section class="noteSection">
-			<div class="note" id="add-new-note">
-				<a href="add-note">
-					<div>
-						<img src="images/plus.png" />
-					</div>
-					<h1>New</h1>
-				</a>
+			<div class="card" id="add-new-note"
+				data-context-path="<%=request.getContextPath()%>">
+				<div>
+					<img src="images/plus.png" />
+				</div>
+				<h1>New</h1>
 			</div>
 			<%
 			try {
@@ -38,49 +36,49 @@
 				if (rs.isBeforeFirst()) {
 					// successfully fetched the notes
 					while (rs.next()) {
-						String title = rs.getString("title");
-						String content = rs.getString("content");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
 			%>
-			<div class="note">
-				<%
-						if(title==null || title.isEmpty()) {
-				%>
-							<h3 style="color:grey"><%="No title" %></h3>
-				<%
-						}
-						else {
-				%>
-							<h3><%=title%></h3>
-				<%
-						}
-				%>
-				
-				<p><%=content%></p>
+			<div class="card" id="<%=rs.getInt("id")%>">
+				<div class="note-content">
+					<%
+					if (title == null || title.isEmpty()) {
+					%>
+					<h3 style="color: grey"><%="No title"%></h3>
+					<%
+					} else {
+					%>
+					<h3><%=title%></h3>
+					<%
+					}
+					%>
+
+					<p><%=content%></p>
+				</div>
+
 				<div class="noteActions">
-					<a href="edit-note/<%=rs.getInt("id")%>" class="noteEdit">
-						<img src="images/edit-text_24px.png" width="18" />
-					</a>
+
 					<a href="delete-note/<%=rs.getInt("id")%>" class="noteDelete">
 						<img src="images/trash_24px.png" width="18" />
 					</a>
 				</div>
 			</div>
 			<%
-					}
-				} 
-				else {
-				// No notes present yet
-				out.println("<h3 style='text-align:center'>No notes yet</h3>");
-				}
-				con.close();
+			}
+			} else {
+			// No notes present yet
+			out.println("<h3 style='text-align:center'>No notes yet</h3>");
+			}
+			con.close();
 
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+			e.printStackTrace();
 			}
 			%>
 		</section>
 	</main>
 
+	<!-- Script for navigation on click -->
+	<script src="js/click-navigate.js"></script>
 </body>
 </html>
