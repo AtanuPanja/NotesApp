@@ -1,0 +1,57 @@
+@charset "UTF-8";
+/* Reset body and html to take up full height */
+	html, body {
+	    height: 100%;
+	    margin: 0;
+	    padding: 0;
+	}
+	
+	/* Style the form to occupy all remaining space */
+	form {
+		padding: 20px;
+	    display: flex;
+	    flex-direction: column;
+	    height: 100%;
+	}
+	
+	.pageHeader {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	
+	/* Adjust the title and content sections */
+	.title, .content {
+	    width: 100%;
+	    border: 1px solid #ccc;
+	    padding: 1rem;
+	    font-size: 1.2rem;
+	    box-sizing: border-box;
+	    margin-bottom: 20px;
+	    border-radius: 5px;
+	    resize: none; /* Prevent resizing */
+	    overflow: hidden; /* Hide scrollbar */
+	}
+	
+	/* Adjust textarea height */
+	.title {
+	    height: 20%; /* Title occupies 20% of the space */
+	}
+	
+	.content {
+	    flex-grow: 1; /* Content area grows to fill remaining space */
+	    height: 100%;
+	}
+	
+	/* Button styling */
+	button {
+	    padding: 10px 20px;
+	    background-color: #00dd6b;
+	    color: white;
+	    border: none;
+	    border-radius: 5px;
+	    cursor: pointer;
+	    margin-top: 20px;
+	    align-self: flex-start;
+	    display: none;
+	}

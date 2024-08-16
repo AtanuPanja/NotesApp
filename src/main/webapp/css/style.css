@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.container {
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/*display: grid;
+	justify-content: center;
+  	grid-template-columns: minmax(100px, 800px);*/
+	
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+#add-new-note {
+	padding: 0;
+	min-height: 200px;
+}
+
+#add-new-note > a {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.note {
+	border: 2px solid black;
+	border-radius: 8px;
+	margin: 1rem;
+	padding: 0.75rem;
+	/* min-width: 200px; */ /* this led to the card expand to entire viewport when the 
+	content is very large, which is not expected. It must grow in size only when 
+	the viewport size reduces, and flex-wrap is triggered. It seems setting width instead, works. */
+	width: 250px;
+	height: auto;
+	display: grid;
+	flex-grow: 1;
+}
+
+.note>h3 {
+	padding-bottom: 1rem;
+}
+.note>p {
+	text-align: justify;
+	align-self: start;
+	height: 200px;
+	
+	overflow: hidden; /* for text-overflow to work, we need to set overflow hidden */
+	/*text-overflow: clip;*/ /* this just cuts the string, to fit the width, even parts of string
+	could appear */
+	/*
+	text-overflow: ellipsis ellipsis;*/
+	
+}
+
+
+.noteSection {
+	
+	/*display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
+	/* this worked for me only when the no width was set for the child elements */
+	/*gap: 20px;*/
+	
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	
+}
+
+.noteActions {
+	margin: 1rem 0;
+	align-self: end;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.noteEdit, .noteDelete {
+	background-color: white;
+	padding: 0.2rem 0.6rem;
+	margin: 1rem 0;
+	border: 1px solid black;
+	cursor: pointer;
+}
