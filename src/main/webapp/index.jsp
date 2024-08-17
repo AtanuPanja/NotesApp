@@ -1,3 +1,6 @@
+<%@page import="utils.AppDateFormat"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.sql.ResultSetMetaData"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="dbcon.DbConnection"%>
@@ -36,11 +39,21 @@
 				if (rs.isBeforeFirst()) {
 					// successfully fetched the notes
 					while (rs.next()) {
-				String title = rs.getString("title");
-				String content = rs.getString("content");
+						int id = rs.getInt("id");
+						String title = rs.getString("title");
+						String content = rs.getString("content");
+						// ResultSetMetaData rsmetadata = rs.getMetaData();
+						// System.out.println(rsmetadata.getColumnTypeName(4)); // DATETIME
+						// System.out.println(rsmetadata.getColumnClassName(4)); // java.time.LocalDateTime
+						
+						LocalDateTime noteDateTime = (LocalDateTime)rs.getObject("time_edited");
+						// System.out.println(id + ": "+noteDateTime);
+						// System.out.println("Date: "+noteDateTime.getMonth() + " "+noteDateTime.getDayOfMonth()+" "+localDateTime.getYear());
+						String formattedTime = AppDateFormat.convert(noteDateTime);
+						// System.out.println(id + ": " + formattedTime);
 			%>
-			<div class="card" id="<%=rs.getInt("id")%>">
-				<div class="note-content">
+			<div class="card" id="<%=id%>">
+				<div class="noteContent">
 					<%
 					if (title == null || title.isEmpty()) {
 					%>
@@ -55,9 +68,10 @@
 
 					<p><%=content%></p>
 				</div>
-
-				<div class="noteActions">
-
+				<div class="noteFooter">
+					
+					<p><%=formattedTime %></p>
+					
 					<a href="delete-note/<%=rs.getInt("id")%>" class="noteDelete">
 						<img src="images/trash_24px.png" width="18" />
 					</a>
