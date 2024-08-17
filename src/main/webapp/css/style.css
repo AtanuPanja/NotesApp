@@ -39,6 +39,7 @@
 	justify-content: center;
 	align-items: center;
 	min-height: 200px;
+	cursor: pointer;
 }
 
 /* note content with heading and paragraph */
