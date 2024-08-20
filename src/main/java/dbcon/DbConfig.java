@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class DbConfig {
+public abstract class DbConfig {
 	
 	private static String dbUrl;
 	private static String dbName;

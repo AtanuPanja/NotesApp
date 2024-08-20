@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+header {
+	padding: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.nav-btn {
+	background-color: white;
+	border: 2px solid black;
+	padding: 10px 20px;
+	cursor: pointer;
+}

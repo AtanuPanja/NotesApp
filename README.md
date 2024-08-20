@@ -6,9 +6,10 @@ The application is deployed on Apache Tomcat and uses MySQL as the backend datab
 
 
 ## Features
-* CRUD operations: Get the list of notes, read a note, edit a note, delete a note
+* CRUD operations: Get the list of notes, read a note, edit a note, move note to trash, restore note, delete permanently, empty bin
 * Backend validations in the forms of add and edit pages
 * JavaScript used for dynamic changes in form textarea and buttons.
+* JavaScript used for navigation
 * MVC architecture: Follows the MVC architecture for separation of concerns.
 
 ## Pre-requisites
@@ -110,7 +111,12 @@ db.name, db.username, db.password values are customizable.
 
 ## Usage
 - Access the application through [localhost:8080/NotesApp/](localhost:8080/NotesApp/).
+- Navigate between Home and Bin pages using the navbar
 - Add note using Add button as presented.
 - Click on a note to open view/edit page.
 	- Only when you input some data into the textareas, the `Save Changes` button appears.
-- Delete by clicking on delete button.
+- Move note to trash by clicking on delete button on home page.
+- In trash page, you can do the following:
+	- Click on trash-icon with cross symbol, to delete permanently.
+	- Click on trash-icon with arrow symbol, to restore the note back to home page.
+	- Click on Empty Bin at the top, to delete all trashed notes permanently.

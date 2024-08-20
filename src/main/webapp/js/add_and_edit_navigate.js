@@ -1,8 +1,7 @@
 const addNewNote = document.getElementById('add-new-note');
 const notes = document.getElementsByClassName('noteContent');
 
-const contextPath = addNewNote.getAttribute('data-context-path');
-
+// contextPath has been declared in menu.js
 addNewNote.addEventListener('click', ()=> {
 	window.location.href = contextPath + '/add-note';
 });
