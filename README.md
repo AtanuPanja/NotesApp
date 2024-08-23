@@ -45,15 +45,18 @@ git clone https://github.com/AtanuPanja/NotesApp.git
         ```
 
    3. #### Run the SQL scripts:
-      - While still logged in, run the command:
+      - While still logged in, run the commands:
         ```sql
         SOURCE path/to/sql/schema.sql;
+        SOURCE path/to/sql/sample_data.sql;
         ```
-      - Alternatively, close the session, open the terminal from the project root, and run
-      ```sql
-      SOURCE sql/schema.sql;
-      ```
-      > This sets up the tables inside the database.
+      - Alternatively, close the session, open the terminal from the project root, and run the commands:
+        ```sql
+        SOURCE sql/schema.sql;
+        SOURCE sql/sample_data.sql;
+        ```
+      > This sets up the tables, with some initial data inside the database.
+      
 ### 3. Eclipse Setup
 #### Import the Project
   1. Open Eclipse and select `File > Import > Existing Maven Projects`.
