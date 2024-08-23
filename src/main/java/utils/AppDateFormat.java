@@ -43,7 +43,9 @@ public abstract class AppDateFormat {
 					suffix = "rd";
 				}
 				// 17th Aug
-				output = dayOfMonth + suffix + " " + noteDateTime.getMonth().toString().substring(0, 4);
+				String month = noteDateTime.getMonth().toString();
+				month = month.substring(0, 1) + month.substring(1,3).toLowerCase();
+				output = dayOfMonth + suffix + " " + month.substring(0, 3);
 			}
 		}
 		
