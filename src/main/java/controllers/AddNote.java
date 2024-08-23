@@ -20,7 +20,7 @@ public class AddNote extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		RequestDispatcher rd = req.getRequestDispatcher("/addNote.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/addNote.jsp");
 		rd.forward(req, resp);
 	}
 	
@@ -68,7 +68,7 @@ public class AddNote extends HttpServlet {
 					else {
 						// failed to insert data
 						out.println("<h3 style='color:red'>Note was not created</h3>");
-						RequestDispatcher rd = req.getRequestDispatcher("/addNote.jsp");
+						RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/addNote.jsp");
 						rd.include(req, resp);
 					}
 				}
@@ -107,7 +107,7 @@ public class AddNote extends HttpServlet {
 						else {
 							// failed to insert data
 							out.println("<h3 style='color:red'>Note was not created</h3>");
-							RequestDispatcher rd = req.getRequestDispatcher("/addNote.jsp");
+							RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/addNote.jsp");
 							rd.include(req, resp);
 						}
 					}
@@ -122,7 +122,7 @@ public class AddNote extends HttpServlet {
 				e.printStackTrace();
 				// error occurred
 				out.println("<h3 style='color:red'>Error -> "+e.toString()+"</h3>");
-				RequestDispatcher rd = req.getRequestDispatcher("/addNote.jsp");
+				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/addNote.jsp");
 				rd.include(req, resp);
 			}
 			

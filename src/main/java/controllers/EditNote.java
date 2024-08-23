@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import dbcon.DbConnection;
 import jakarta.servlet.RequestDispatcher;
@@ -59,7 +61,7 @@ public class EditNote extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		RequestDispatcher rd = req.getRequestDispatcher("/editNote.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/editNote.jsp");
 		rd.include(req, resp);
 
 	}
@@ -79,7 +81,7 @@ public class EditNote extends HttpServlet {
 		if (content.isBlank()) {
 			// show client error
 			out.println("<h3 style='color:red'>Content must not be empty or only spaces</h3>");
-			RequestDispatcher rd = req.getRequestDispatcher("/editNote.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/editNote.jsp");
 			rd.include(req, resp);
 		} else {
 			// no client error
@@ -89,6 +91,10 @@ public class EditNote extends HttpServlet {
 				Connection con = DbConnection.getConnection();
 				PreparedStatement ps;
 				String updateQuery;
+				
+				// Insert the datetime manually using jdbc
+				LocalDateTime now = LocalDateTime.now();
+				
 
 				// Check if the title is empty
 				// we might have the title empty, but empty string cannot
@@ -97,11 +103,15 @@ public class EditNote extends HttpServlet {
 				// allows multiple NULL values.
 				if (title.isEmpty()) {
 
-					updateQuery = "UPDATE notes SET title=?, content=? WHERE id=?";
+					updateQuery = "UPDATE notes SET title=?, content=?, time_edited=? WHERE id=?";
 					ps = con.prepareStatement(updateQuery);
 					ps.setNull(1, java.sql.Types.VARCHAR);
 					ps.setString(2, content);
-					ps.setInt(3, id);
+					
+					// Converting to Timestamp before inserting
+					ps.setTimestamp(3, Timestamp.valueOf(now));
+					
+					ps.setInt(4, id);
 
 					int count = ps.executeUpdate();
 
@@ -109,13 +119,15 @@ public class EditNote extends HttpServlet {
 						// successfully updated data
 						out.println("<h3 style='color:green'>Note updated successfully</h3><br/><br/>");
 						resp.sendRedirect(req.getContextPath() + "/");
-					} else {
+					} 
+					else {
 						// failed to update data
 						out.println("<h3 style='color:red'>Note was not updated</h3>");
-						RequestDispatcher rd = req.getRequestDispatcher("/editNote.jsp");
+						RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/editNote.jsp");
 						rd.include(req, resp);
 					}
-				} else {
+				} 
+				else {
 					// Check if the title already exists in the notes database
 					// except the current note (otherwise it gives error)
 					String findTitleQuery = "SELECT * FROM notes WHERE title=? AND id!=?";
@@ -131,18 +143,22 @@ public class EditNote extends HttpServlet {
 					if (result.isBeforeFirst()) {
 						out.println(
 								"<h3 style='color:red'> Cannot use title \"" + title + "\". It already exists.</h3>");
-						RequestDispatcher rd = req.getRequestDispatcher("/editNote.jsp");
+						RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/editNote.jsp");
 						rd.include(req, resp);
 					}
 
 					else {
 
 						// if title is not empty, and doesn't match any other title in the database, then directly update title
-						updateQuery = "UPDATE notes SET title=?, content=? WHERE id=?";
+						updateQuery = "UPDATE notes SET title=?, content=?, time_edited=? WHERE id=?";
 						ps = con.prepareStatement(updateQuery);
 						ps.setString(1, title);
 						ps.setString(2, content);
-						ps.setInt(3, id);
+						
+						// Converting to Timestamp before inserting
+						ps.setTimestamp(3, Timestamp.valueOf(now));
+						
+						ps.setInt(4, id);
 
 						int count = ps.executeUpdate();
 
@@ -150,10 +166,11 @@ public class EditNote extends HttpServlet {
 							// successfully updated data
 							out.println("<h3 style='color:green'>Note updated successfully</h3><br/><br/>");
 							resp.sendRedirect(req.getContextPath() + "/");
-						} else {
+						} 
+						else {
 							// failed to update data
 							out.println("<h3 style='color:red'>Note was not updated</h3>");
-							RequestDispatcher rd = req.getRequestDispatcher("/editNote.jsp");
+							RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/editNote.jsp");
 							rd.include(req, resp);
 						}
 
@@ -161,11 +178,12 @@ public class EditNote extends HttpServlet {
 					}
 
 				}
-			} catch (Exception e) {
+			} 
+			catch (Exception e) {
 				e.printStackTrace();
 				// error occurred
 				out.println("<h3 style='color:red'>Error -> " + e.toString() + "</h3>");
-				RequestDispatcher rd = req.getRequestDispatcher("/editNote.jsp");
+				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/editNote.jsp");
 				rd.include(req, resp);
 			}
 

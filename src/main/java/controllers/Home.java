@@ -59,7 +59,7 @@ public class Home extends HttpServlet {
 			req.setAttribute("notes", notes);
 			req.setAttribute("isTrash", false);
 			
-			RequestDispatcher rd = req.getRequestDispatcher("/home.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/home.jsp");
 			rd.forward(req, resp);
 		} 
 		catch (Exception e) {

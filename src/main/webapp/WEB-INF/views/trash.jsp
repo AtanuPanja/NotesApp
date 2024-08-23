@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css" />
 </head>
 <body>
-	<jsp:include page="components/menu.jsp"/>
+	<jsp:include page="../components/menu.jsp"/>
 	<main class="container">
 		<section class="heading">
 			<h2>Deleted Notes</h2>
@@ -20,7 +20,7 @@
 		</section>
 		<section class="noteSection">
 			
-			<jsp:include page="components/noteList.jsp"/>
+			<jsp:include page="../components/noteList.jsp"/>
 		</section>
 		<script src="js/menu.js"></script>
 	</main>

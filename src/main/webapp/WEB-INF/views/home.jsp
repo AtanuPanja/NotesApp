@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css" />
 </head>
 <body>
-	<jsp:include page="components/menu.jsp"/>
+	<jsp:include page="../components/menu.jsp"/>
 	<hr>
 	<main class="container">
 		<h2>All Notes</h2>
@@ -22,7 +22,7 @@
 				</div>
 				<h1>New</h1>
 			</div>
-			<jsp:include page="components/noteList.jsp"/>
+			<jsp:include page="../components/noteList.jsp"/>
 		</section>
 	</main>
 
