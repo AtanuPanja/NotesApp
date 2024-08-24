@@ -16,7 +16,14 @@ public abstract class AppDateFormat {
 			// when day of year is same, it means date, month are same
 			if (currentDateTime.getDayOfYear() == noteDateTime.getDayOfYear()) {
 				// the output is just the time of the day
-				output = noteDateTime.getHour()+":"+noteDateTime.getMinute();
+				
+				int minute = noteDateTime.getMinute();
+				String minuteStr = String.valueOf(minute);
+				// padding with 0 for one-digit value of minutes
+				if (minute < 10) {
+					minuteStr = "0" + minuteStr;
+				}
+				output = noteDateTime.getHour()+":"+minuteStr;
 			}
 			else if(currentDateTime.getDayOfYear() - 1 == noteDateTime.getDayOfYear()) {
 				// when note date is one day before current date

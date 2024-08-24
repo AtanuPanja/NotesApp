@@ -12,7 +12,6 @@
 </head>
 <body>
 	<jsp:include page="../components/menu.jsp"/>
-	<hr>
 	<main class="container">
 		<h2>All Notes</h2>
 		<section class="noteSection">
