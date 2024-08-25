@@ -33,7 +33,10 @@ to ensure separation, we use request.getContextPath() -->
      	</section>
      	
      	<section>
-     		<textarea class="title" placeholder="Title" name="title"><%=title %></textarea><br/><br/>
+     		<!-- If maxlength is not mentioned, then any number of characters
+     		are allowed from the frontend. However on submission, error occurs
+     		due to the size constraint in the database. -->
+     		<textarea class="title" placeholder="Title" name="title" maxlength=255><%=title %></textarea><br/><br/>
          	<textarea class="content" placeholder="Content" name="content"><%=content %></textarea>
      	</section>
          

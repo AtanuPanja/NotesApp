@@ -22,7 +22,7 @@
 		</section>
 
 		<section>
-			<textarea class="title" placeholder="Title" name="title"></textarea>
+			<textarea class="title" placeholder="Title" name="title" maxlength=255></textarea>
 			<br />
 			<br />
 			<textarea class="content" placeholder="Content" name="content"></textarea>
