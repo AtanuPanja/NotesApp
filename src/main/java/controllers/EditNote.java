@@ -24,8 +24,6 @@ public class EditNote extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		// resp.getWriter().println(req.getPathInfo());
-		System.out.println("GET /edit-todo" + req.getPathInfo());
 		int id = Integer.parseInt(req.getPathInfo().substring(1));
 
 		try {
@@ -70,7 +68,6 @@ public class EditNote extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		PrintWriter out = resp.getWriter();
-		System.out.println("POST /edit-todo" + req.getPathInfo());
 		int id = Integer.parseInt(req.getPathInfo().substring(1));
 
 		resp.setContentType("text/html");
