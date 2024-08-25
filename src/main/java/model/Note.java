@@ -7,6 +7,7 @@ public class Note {
 	private String content;
 	private String timeEdited;
 	private boolean isTrashed = false;
+	private boolean isFavorite = false;
 	
 	public int getId() {
 		return id;
@@ -46,6 +47,14 @@ public class Note {
 
 	public void setTrashed(boolean isTrashed) {
 		this.isTrashed = isTrashed;
+	}
+
+	public boolean isFavorite() {
+		return isFavorite;
+	}
+
+	public void setFavorite(boolean isFavorite) {
+		this.isFavorite = isFavorite;
 	}
 	
 	

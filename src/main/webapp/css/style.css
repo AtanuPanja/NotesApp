@@ -26,7 +26,6 @@ body {
 
 /* note card*/
 .card {
-	border: 2px solid black;
 	border-radius: 8px;
 	margin: 1rem;
 	
@@ -37,6 +36,9 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	
+	box-shadow: 3px 3px 0px 0px black, 
+				-1px -1px 3px 0px grey;
 }
 
 /* also a note card, but slightly different style */
@@ -47,10 +49,29 @@ body {
 	cursor: pointer;
 }
 
+/* Add to/Remove from favorites button */
+.favoritesBtn {
+	text-align: right;
+	padding: 0.5rem;
+}
+
+.favoritesBtn > img {
+	cursor: pointer;
+}
+
 /* note content with heading and paragraph */
+/*maxheight and overflow are now shifted from .noteContent>p to .noteContent
+This is done, because otherwise when the title is large and content is small,
+there is a large amount of space other notes with small title and large content
+as p had the maxheight. Now, both h3 and p have the max-height together.
+*/
 .noteContent {
 	padding: 1rem 0.75rem;
 	cursor: pointer;
+	flex-grow: 1;
+	
+	max-height: 412px;
+	overflow: hidden;
 }
 
 .noteContent>h3 {
@@ -59,9 +80,6 @@ body {
 .noteContent>p {
 	align-self: start;
 	text-align: justify;
-	
-	height: 200px;
-	overflow: hidden;
 }
 
 /* note footer with time and actions */
@@ -72,16 +90,16 @@ body {
 	align-items: center;
 	
 	color: #707070;
-	border-top: 2px solid black;
 	
 	padding: 0 0.75rem;
 }
 
 .noteDelete {
 	color: black;
-	padding: 0.2rem 0.6rem;
+	/* padding: 0.2rem 0.6rem; */
 	margin: 1rem 0;
-	
+	/*
 	border: 1px solid black;
+	*/
 	cursor: pointer;
 }

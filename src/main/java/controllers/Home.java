@@ -27,7 +27,7 @@ public class Home extends HttpServlet {
 		List<Note> notes = new ArrayList<>();
 		try {
 			Connection con = DbConnection.getConnection();
-			String selectQuery = "SELECT * FROM notes WHERE is_trashed=FALSE ORDER BY time_edited DESC";
+			String selectQuery = "SELECT * FROM notes WHERE is_trashed=FALSE ORDER BY favorite DESC, time_edited DESC";
 			PreparedStatement ps = con.prepareStatement(selectQuery);
 			ResultSet rs = ps.executeQuery();
 
@@ -42,11 +42,14 @@ public class Home extends HttpServlet {
 					LocalDateTime noteDateTime = (LocalDateTime)rs.getObject("time_edited");
 					String formattedTime = AppDateFormat.convert(noteDateTime);
 					
+					boolean isFavorite = rs.getBoolean("favorite");
+					
 					Note note = new Note();
 					note.setId(id);
 					note.setTitle(title);
 					note.setContent(content);
 					note.setTimeEdited(formattedTime);
+					note.setFavorite(isFavorite);
 					
 					notes.add(note);
 					

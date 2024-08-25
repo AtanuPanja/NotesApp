@@ -17,7 +17,7 @@
 		<section class="noteSection">
 			<div class="card" id="add-new-note">
 				<div>
-					<img src="images/plus.png" />
+					<img src="images/plus.png" alt="Create"/>
 				</div>
 				<h1>New</h1>
 			</div>
@@ -28,5 +28,6 @@
 	<!-- Script for navigation on click -->
 	<script src="js/menu.js"></script>
 	<script src="js/add_and_edit_navigate.js"></script>
+	<script src="js/add_remove_favorites.js"></script>
 </body>
 </html>
