@@ -47,7 +47,7 @@
 				}
 %>
 
-	<div class="noteContent">
+	<div class="noteContent" title="Read or Edit">
 <%
 				if (note.getTitle() == null || note.getTitle().isEmpty()) {
 %>

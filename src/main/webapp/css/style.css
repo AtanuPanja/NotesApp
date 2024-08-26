@@ -66,12 +66,28 @@ there is a large amount of space other notes with small title and large content
 as p had the maxheight. Now, both h3 and p have the max-height together.
 */
 .noteContent {
+	position: relative;
 	padding: 1rem 0.75rem;
 	cursor: pointer;
 	flex-grow: 1;
 	
 	max-height: 412px;
 	overflow: hidden;
+}
+
+/* Blur effect for excess text */
+.noteContent::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 30px;
+	background: linear-gradient(
+					to bottom,
+					rgba(255, 255, 255, 0),
+					rgba(255, 255, 255, 1)
+				);
 }
 
 .noteContent>h3 {
