@@ -2,8 +2,13 @@ package utils;
 
 import java.time.LocalDateTime;
 
-public abstract class AppDateFormat {
+public class AppDateFormat {
 	
+	// private constructor - prevents creation of instances
+	private AppDateFormat() {}
+	
+	// method to convert the date from the DB to an appropriate format for
+	// the application
 	public static String convert(LocalDateTime noteDateTime) {
 		
 		LocalDateTime currentDateTime = LocalDateTime.now();

@@ -3,8 +3,12 @@ package dbcon;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public abstract class DbConnection {
+public class DbConnection {
 	
+	// private constructor - prevents creating instances
+	private DbConnection() {}
+	
+	// method to create and return a database connection
 	public static Connection getConnection() {
 		
 		Connection con = null;

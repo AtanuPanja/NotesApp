@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public abstract class DbConfig {
+public class DbConfig {
+	
+	// private constructor - prevents creating instances
+	private DbConfig() {}
 	
 	private static String dbUrl;
 	private static String dbName;
