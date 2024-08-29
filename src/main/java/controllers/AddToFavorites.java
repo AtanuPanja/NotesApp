@@ -2,10 +2,10 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 
-import dbcon.DbConnection;
+import dao.NoteDAO;
+import dao.NoteDAOImpl;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,31 +13,64 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import model.Note;
+
 @WebServlet("/add-to-favorites/*")
 public class AddToFavorites extends HttpServlet {
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		int id = Integer.parseInt(req.getPathInfo().substring(1));
-		
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("text/html");
 		
+		String pathParam = req.getPathInfo().substring(1);
+		int id = 0;
+		
 		try {
-			Connection con = DbConnection.getConnection();
-			String addToFavoritesQuery = "UPDATE notes SET favorite=? WHERE id=?";
-			PreparedStatement ps = con.prepareStatement(addToFavoritesQuery);
-			ps.setBoolean(1, true);
-			ps.setInt(2, id);
+			id = Integer.parseInt(pathParam);
 			
-			int count = ps.executeUpdate();
+			NoteDAO noteDAO = new NoteDAOImpl();
 			
-			if (count <= 0) {
-				out.println("Couldn't add to favorites");
-				RequestDispatcher rd = req.getRequestDispatcher("/home");
-				rd.include(req, resp);
+			Note note = noteDAO.findById(id);
+			
+			if (note == null) {
+				// couldn't find the note with the respective id
+				// show error
+				out.println("<h3 style='color:red'>Note with id "+id+" doesn't exist.</h3>");
 			}
+			else if (note.isTrashed()) {
+				// note is in trash - cannot be added to favorites
+				// show error
+				out.println("<h3 style='color:red'>The requested note is in trash. Restore it first to add to favorites.</h3>");
+			}
+			else if (note.isFavorite()) {
+				// note is already added to favorites
+				// show error
+				out.println("<h3 style='color:red'>The requested note is already added to favorites</h3>");
+			}
+			else {
+				
+				// add to favorites - update operation
+				note.setFavorite(true);
+				int result = noteDAO.update(note);
+				
+				if (result > 0) {
+					// successfully added to favorites
+					resp.sendRedirect(req.getContextPath() + "/home");
+				}
+				else {
+					// failed to add to favorites
+					out.println("<h3 style='color:red'>Couldn't add to favorites</h3>");
+					RequestDispatcher rd = req.getRequestDispatcher("/home");
+					rd.include(req, resp);
+				}
+			}
+			
+		}
+		catch (NumberFormatException ne) {
+			ne.printStackTrace();
+			out.println("<h3 style='color:red'>Invalid path parameter. It must be an integer.</h3>");
 		}
 		catch (Exception e) {
 			e.printStackTrace();

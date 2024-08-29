@@ -1,3 +1,4 @@
+<%@page import="utils.AppDateFormat"%>
 <%@page import="model.Note"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -24,14 +25,20 @@
 		else {
 		
 			for (Note note: notes) {
+				int noteId = note.getId();
+				String title = note.getTitle();
+				String content = note.getContent();
+				String timeEdited = AppDateFormat.convert(note.getTimeEdited());
+				boolean isFavorite = note.isFavorite();
+				
 %>
-<div class="card" id="<%=note.getId()%>">
+<div class="card" id="<%=noteId%>">
 <%
 				if (!isDeletedNotes) {
 %>
 		<div class="favoritesBtn">
 <%
-					if (note.isFavorite()) {
+					if (isFavorite) {
 %>
 			<img src="images/remove-favorite_24px.png" title="Remove from favorites" alt="Remove from favorites"/>
 <%
@@ -49,37 +56,37 @@
 
 	<div class="noteContent" title="Read or Edit">
 <%
-				if (note.getTitle() == null || note.getTitle().isEmpty()) {
+				if (title == null || title.isEmpty()) {
 %>
 		<h3 style="color: grey"><%="No title"%></h3>
 <%
 				} 
 				else {
 %>
-		<h3><%=note.getTitle()%></h3>
+		<h3><%=title%></h3>
 <%
 				}
 %>
 
-		<p><%=note.getContent()%></p>
+		<p><%=content%></p>
 	</div>
 	
 	<div class="noteFooter">
 <%
 				if(!isDeletedNotes) {
 %>
-		<p><%=note.getTimeEdited()%></p>
-		<a href="move-to-trash/<%=note.getId()%>" class="noteDelete" title="Move to bin"> 
+		<p><%= timeEdited %></p>
+		<a href="move-to-trash/<%=noteId%>" class="noteDelete" title="Move to bin"> 
 			<img src="images/recycle-bin_24px.png" alt="Move to bin"/>
 		</a>
 <%
 				}
 				else {
 %>
-		<a href="delete-note/<%=note.getId()%>" class="noteDelete" title="Delete permanently"> 
+		<a href="delete-note/<%=noteId%>" class="noteDelete" title="Delete permanently"> 
 			<img src="images/delete_24px.png" alt="Delete permanently"/>
 		</a>
-		<a href="restore-note/<%=note.getId()%>" class="noteDelete" title="Restore"> 
+		<a href="restore-note/<%=noteId%>" class="noteDelete" title="Restore"> 
 			<img src="images/restore_24px.png" alt="Restore"/>
 		</a>
 <%

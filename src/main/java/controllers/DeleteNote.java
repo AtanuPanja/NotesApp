@@ -2,16 +2,17 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 
-import dbcon.DbConnection;
-import jakarta.servlet.RequestDispatcher;
+import dao.NoteDAO;
+import dao.NoteDAOImpl;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import model.Note;
 
 @WebServlet("/delete-note/*")
 public class DeleteNote extends HttpServlet {
@@ -22,36 +23,47 @@ public class DeleteNote extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("text/html");
 		
-		int id = Integer.parseInt(req.getPathInfo().substring(1));
-		// out.println(id);
-		
+		String pathParam = req.getPathInfo().substring(1);
+		int id = 0;
 		try {
-			Connection con = DbConnection.getConnection();
-			String deleteQuery = "DELETE FROM notes WHERE id=?";
-			PreparedStatement ps = con.prepareStatement(deleteQuery);
-			ps.setInt(1,id);
+			id = Integer.parseInt(pathParam);
 			
-			int count = ps.executeUpdate();
+			NoteDAO noteDAO = new NoteDAOImpl();
 			
-			if (count > 0) {
-				// successfully deleted the note
-				// out.println("<h3 style='color:green'>Deleted the note successfully</h3>");
-				resp.sendRedirect(req.getContextPath() + "/");
+			// try to find if there is an actual note with this id
+			Note note = noteDAO.findById(id);
+			if (note == null) {
+				// couldn't find the note with the respective id
+				// show error
+				out.println("<h3 style='color:red'>Note with id "+id+" doesn't exist.</h3>");
+			}
+			else if (!note.isTrashed()) {
+				// the note is not trashed
+				// currently restricting the active notes from being deleted permanently
+				// so, only the note which is in trash, can be deleted
+				out.println("<h3 style='color:red'>Note with id "+id+" is not in trash. Move to trash instead.</h3>");
 			}
 			else {
-				// failed to delete the note
-				out.println("<h3 style='color:red'>Couldn't delete the note</h3");
+				int result = noteDAO.delete(id);
+				
+				if (result > 0) {
+					// successfully deleted the note permanently
+					resp.sendRedirect(req.getContextPath() + "/");
+				}
+				else {
+					// failed to delete the note permanently
+					out.println("<h3 style='color:red'>Couldn't delete the note</h3");
+				}
 			}
+			
 		}
-		catch(Exception e) {
-			// some error occurred
+		catch (NumberFormatException ne) {
+			ne.printStackTrace();
+			out.println("<h3 style='color:red'>Invalid path parameter. It must be an integer.</h3>");
+		}
+		catch (Exception e) {
 			e.printStackTrace();
-			// error occurred
-			out.println("<h3 style='color:red'>Error -> "+e.toString()+"</h3>");
 		}
-		
-		// RequestDispatcher rd = req.getRequestDispatcher("/");
-		// rd.include(req, resp);
 		
 	}
 }
