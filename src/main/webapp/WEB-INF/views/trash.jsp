@@ -16,7 +16,9 @@
 	<main class="container">
 		<section class="heading">
 			<h2>Deleted Notes</h2>
+<% if (!("0".equals(String.valueOf(request.getAttribute("numberOfNotes"))))) { %>
 			<a href="<%=request.getContextPath() %>/empty-trash" id="emptyBin">Empty Bin</a>
+<% } %>
 		</section>
 		<section class="noteSection">
 			

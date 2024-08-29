@@ -27,6 +27,7 @@ public class Trash extends HttpServlet {
 		
 		req.setAttribute("notes", notes);
 		req.setAttribute("isTrash", true);
+		req.setAttribute("numberOfNotes", notes.size());
 		
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/trash.jsp");
 		rd.forward(req, resp);

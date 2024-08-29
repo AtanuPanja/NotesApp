@@ -7,10 +7,11 @@ The application is deployed on Apache Tomcat and uses MySQL as the backend datab
 
 ## Features
 * CRUD operations: Get the list of notes, read a note, edit a note, move note to bin, restore note, delete permanently, empty bin, mark/unmark as favorite
-* Backend validations in the forms of add and edit pages
+* Backend validations in all the route controllers, and forms in add and edit pages
 * JavaScript used for dynamic changes in form textarea and buttons.
 * JavaScript used for navigation
 * MVC architecture: Follows the MVC architecture for separation of concerns.
+* DAO pattern: Uses DAO pattern to separate data access logic from the controllers.
 
 ## Pre-requisites
 * Java Development Kit (JDK): Version 17
@@ -93,7 +94,7 @@ git clone https://github.com/AtanuPanja/NotesApp.git
   1. #### Initial Configuration:
      - Find the `config.properties.example` file and rename it `config.properties`.
      - Edit the file with your database name, MySQL username, and password.
-        > <strong>Ensure the database name matches the one used in</strong> [Step 2 (Database Creation)](#2-mysql-setup) .
+        > **Ensure the database name matches the one used in** [Step 2 (Database Creation)](#2-mysql-setup) .
 
   1. Right-click on the project in the `Project Explorer`.
   1. Go to `Run > Run on Server`.
@@ -125,4 +126,6 @@ db.name, db.username, db.password values are customizable.
 	  - Click on `trash-icon with cross symbol`, to *delete permanently*.
 	  - Click on `trash-icon with arrow symbol`, to *restore* the note back to home page.
 	  - Click on `Empty Bin` at the top, to *delete all trashed notes permanently*.
+      - `Empty Bin` button is now visible only when there are notes in the trash page.
+      - It is hidden when no notes are in trash.
 - **Favorite**: Click on `star-icon` associated with any note to mark it as favorite. Toggle favorite by clicking again.
