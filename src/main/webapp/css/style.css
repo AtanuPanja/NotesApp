@@ -112,10 +112,8 @@ as p had the maxheight. Now, both h3 and p have the max-height together.
 
 .noteDelete {
 	color: black;
-	/* padding: 0.2rem 0.6rem; */
+	background-color: white;
 	margin: 1rem 0;
-	/*
-	border: 1px solid black;
-	*/
+	border: none;
 	cursor: pointer;
 }

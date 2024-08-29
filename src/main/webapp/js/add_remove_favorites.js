@@ -8,19 +8,20 @@ document.querySelectorAll('.favoritesBtn>img').forEach(button => {
 		
 		if (src === "images/add-favorite_24px.png") {
 			
-			fetch(`${contextPath}/add-to-favorites/${id}`)
+			fetch(`${contextPath}/add-to-favorites/${id}`, 
+				{method: 'POST'}
+			)
 			.then(()=> {
 				window.location.reload();
 			});
 		}
 		else {
-			fetch(`${contextPath}/remove-from-favorites/${id}`)
+			fetch(`${contextPath}/remove-from-favorites/${id}`,
+				{method: 'POST'}
+			)
 			.then(()=> {
 				window.location.reload();
 			});
 		}
-		
-		
-		
 	});
 });

@@ -33,13 +33,9 @@
 				
 %>
 <div class="card" id="<%=noteId%>">
-<%
-				if (!isDeletedNotes) {
-%>
+<%			if (!isDeletedNotes) { %>
 		<div class="favoritesBtn">
-<%
-					if (isFavorite) {
-%>
+<%				if (isFavorite) { %>
 			<img src="images/remove-favorite_24px.png" title="Remove from favorites" alt="Remove from favorites"/>
 <%
 					}
@@ -76,22 +72,29 @@
 				if(!isDeletedNotes) {
 %>
 		<p><%= timeEdited %></p>
-		<a href="move-to-trash/<%=noteId%>" class="noteDelete" title="Move to bin"> 
-			<img src="images/recycle-bin_24px.png" alt="Move to bin"/>
-		</a>
+		<form action="move-to-trash/<%=noteId%>" method="post">
+			<button class="noteDelete" title="Move to bin"> 
+				<img src="images/recycle-bin_24px.png" alt="Move to bin"/>
+			</button>
+		</form>
+		
 <%
 				}
 				else {
 %>
-		<a href="delete-note/<%=noteId%>" class="noteDelete" title="Delete permanently"> 
-			<img src="images/delete_24px.png" alt="Delete permanently"/>
-		</a>
-		<a href="restore-note/<%=noteId%>" class="noteDelete" title="Restore"> 
-			<img src="images/restore_24px.png" alt="Restore"/>
-		</a>
-<%
-				}
-%>
+		<form action="delete-note/<%=noteId%>" method="post">
+			<button class="noteDelete" title="Delete permanently"> 
+				<img src="images/delete_24px.png" alt="Delete permanently"/>
+			</button>
+		</form>
+		
+		<form action="restore-note/<%=noteId%>" method="post">
+			<button class="noteDelete" title="Restore"> 
+				<img src="images/restore_24px.png" alt="Restore"/>
+			</button>
+		</form>
+		
+<%				} %>
 		
 
 		

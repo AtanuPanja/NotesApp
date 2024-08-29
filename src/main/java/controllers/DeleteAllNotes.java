@@ -19,7 +19,7 @@ import model.Note;
 public class DeleteAllNotes extends HttpServlet {
 	
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		NoteDAO noteDAO = new NoteDAOImpl();
 		
