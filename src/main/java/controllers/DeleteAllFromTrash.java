@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.Note;
 
 @WebServlet("/empty-trash")
-public class DeleteAllNotes extends HttpServlet {
+public class DeleteAllFromTrash extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
