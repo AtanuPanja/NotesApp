@@ -9,8 +9,10 @@
 <title>Notes</title>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/menu.css" />
+<link rel="stylesheet" type="text/css" href="css/notificationAlert.css"/>
 </head>
 <body>
+	<jsp:include page="../components/notificationAlert.jsp"/>
 	<jsp:include page="../components/menu.jsp"/>
 	<main class="container">
 		<h2>All Notes</h2>
@@ -29,5 +31,7 @@
 	<script src="js/menu.js"></script>
 	<script src="js/add_and_edit_navigate.js"></script>
 	<script src="js/add_remove_favorites.js"></script>
+	<script src="js/delete_actions.js"></script>
+	<script src="js/handle_notification_alert.js"></script>
 </body>
 </html>

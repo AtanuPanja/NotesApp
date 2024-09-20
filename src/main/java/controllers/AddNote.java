@@ -12,7 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.HttpSession;
 import model.Note;
 
 @WebServlet("/add-note")
@@ -39,9 +39,11 @@ public class AddNote extends HttpServlet {
 		
 		boolean isValidTitle = false; // flag to check if title is valid for insertion
 		
+		HttpSession session = req.getSession();
+		
 		if (content.isBlank()) {
+			session.setAttribute("notifyMessage", "Content must not be empty or only spaces");
 			
-			out.println("<h3 style='color:red'>Content must not be empty or only spaces</h3>");
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/addNote.jsp");
 			rd.include(req, resp);
 		} 
@@ -66,17 +68,20 @@ public class AddNote extends HttpServlet {
 				int result = noteDAO.insert(title, content);					
 				if (result > 0) {
 					// successfully inserted data
+					session.setAttribute("notifyMessage", "New note created");
 					resp.sendRedirect(req.getContextPath() + "/");
+					
 				}
 				else {
 					// failed to insert data
-					out.println("<h3 style='color:red'>Note was not created</h3>");
+					session.setAttribute("notifyMessage", "Note was not created");
 					RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/addNote.jsp");
 					rd.include(req, resp);
 				}
 			}
 			else {
-				out.println("<h3 style='color:red'> Cannot use title \""+title+"\". It already exists.</h3>");
+				session.setAttribute("notifyMessage", "Cannot use title \""+title+"\". It already exists.");
+				
 				RequestDispatcher rd = req.getRequestDispatcher("//WEB-INF/views/addNote.jsp");
 				rd.include(req, resp);
 			}

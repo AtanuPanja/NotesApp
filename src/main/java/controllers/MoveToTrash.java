@@ -11,7 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.HttpSession;
 import model.Note;
 
 @WebServlet("/move-to-trash/*")
@@ -51,7 +51,9 @@ public class MoveToTrash extends HttpServlet {
 				
 				if (result > 0) {
 					// successfully moved to trash
-					resp.sendRedirect(req.getContextPath() + "/trash");
+					HttpSession session = req.getSession();
+					session.setAttribute("notifyMessage", "Note moved to bin");
+					// resp.sendRedirect(req.getContextPath() + "/");
 				}
 				else {
 					// failed to move to trash

@@ -24,6 +24,7 @@ public class EditNote extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("text/html");
+		HttpSession session = req.getSession();
 		
 		String pathParam = req.getPathInfo().substring(1);
 		
@@ -37,17 +38,19 @@ public class EditNote extends HttpServlet {
 			if (note == null) {
 				// couldn't find the note with the respective id
 				// show error
-				out.println("<h3 style='color:red'>Note with id "+id+" doesn't exist.</h3>");
+				session.setAttribute("notifyMessage", "Note with id "+id+" doesn't exist.");
+				resp.sendRedirect(req.getContextPath() + "/");
 			}
 			else if (note.isTrashed()) {
 				// note is in trash, so it should not be edited
 				// show error
-				out.println("<h3 style='color:red'>The requested note is in trash. Restore it to view/edit.</h3>");
+				session.setAttribute("notifyMessage", "The requested note is in trash. Restore it to view/edit.");
+				resp.sendRedirect(req.getContextPath() + "/");
 			}
 			else {
 				// note exists in the active notes section
 				// set the note to session and pass it to editNote.jsp
-				HttpSession session = req.getSession();
+				
 				session.setAttribute("note", note);
 				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/editNote.jsp");
 				rd.include(req, resp);
@@ -56,7 +59,9 @@ public class EditNote extends HttpServlet {
 		}
 		catch (NumberFormatException ne) {
 			ne.printStackTrace();
-			out.println("<h3 style='color:red'>Invalid path parameter. It must be an integer.</h3>");
+			
+			session.setAttribute("notifyMessage", "Invalid path parameter. It must be an integer.");
+			resp.sendRedirect(req.getContextPath() + "/");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -69,6 +74,7 @@ public class EditNote extends HttpServlet {
 
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("text/html");
+		HttpSession session = req.getSession();
 		
 		String pathParam = req.getPathInfo().substring(1);
 		
@@ -86,7 +92,8 @@ public class EditNote extends HttpServlet {
 			boolean isValidTitle = false; // flag to check if title is valid
 			
 			if (content.isBlank()) {
-				out.println("<h3 style='color:red'>Content must not be empty or only spaces</h3>");
+				session.setAttribute("notifyMessage", "Content must not be empty or only spaces");
+				
 				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/editNote.jsp");
 				rd.include(req, resp);
 			} 
@@ -122,18 +129,22 @@ public class EditNote extends HttpServlet {
 					int result = noteDAO.update(existingNote);
 					if (result > 0) {
 						// successfully updated data
+						
+						session.setAttribute("notifyMessage", "Note updated");
 						resp.sendRedirect(req.getContextPath() + "/");
 					}
 					else {
 						// failed to update data
-						out.println("<h3 style='color:red'>Note was not updated</h3>");
+						session.setAttribute("notifyMessage", "Failed to update note");
+						
 						RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/editNote.jsp");
 						rd.include(req, resp);
 					}
 					
 				}
 				else {
-					out.println("<h3 style='color:red'> Cannot use title \""+title+"\". It is the title for another note.</h3>");
+					session.setAttribute("notifyMessage", "Cannot use title \""+title+"\". It already exists.");
+					
 					RequestDispatcher rd = req.getRequestDispatcher("//WEB-INF/views/editNote.jsp");
 					rd.include(req, resp);
 				}
@@ -142,7 +153,9 @@ public class EditNote extends HttpServlet {
 		}
 		catch (NumberFormatException ne) {
 			ne.printStackTrace();
-			out.println("<h3 style='color:red'>Invalid path parameter. It must be an integer.</h3>");
+			
+			session.setAttribute("notifyMessage", "Invalid path parameter. It must be an integer.");
+			
 		}
 		catch (Exception e) {
 			e.printStackTrace();

@@ -15,9 +15,16 @@ Somehow, it mixes the request of style.css, with the edit-note/:id,
 to ensure separation, we use request.getContextPath() -->
 
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/add_and_edit_forms.css"/>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/notificationAlert.css"/>
+<style>
+	.notification {
+		position: unset;
+	}
+</style>
 
 </head>
 <body>
+	<jsp:include page="../components/notificationAlert.jsp"/>
 	<%
 	Note note = (Note)session.getAttribute("note");
 			int id = note != null ? note.getId() : 0;
@@ -43,5 +50,6 @@ to ensure separation, we use request.getContextPath() -->
      </form>
      
      <script src="<%= request.getContextPath() %>/js/expand_textarea_show_btn.js"></script>
+     <script src="<%= request.getContextPath() %>/js/handle_notification_alert.js"></script>
 </body>
 </html>

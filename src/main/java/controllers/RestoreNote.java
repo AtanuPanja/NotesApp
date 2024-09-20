@@ -11,7 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.HttpSession;
 import model.Note;
 
 @WebServlet("/restore-note/*")
@@ -52,7 +52,9 @@ public class RestoreNote extends HttpServlet {
 				
 				if (result > 0) {
 					// successfully restored from trash
-					resp.sendRedirect(req.getContextPath() + "/home");
+					HttpSession session = req.getSession();
+					session.setAttribute("notifyMessage", "Note restored from trash");
+					// resp.sendRedirect(req.getContextPath() + "/home");
 				}
 				else {
 					// failed to restore from trash

@@ -11,7 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.HttpSession;
 import model.Note;
 
 @WebServlet("/delete-note/*")
@@ -48,7 +48,9 @@ public class DeleteNote extends HttpServlet {
 				
 				if (result > 0) {
 					// successfully deleted the note permanently
-					resp.sendRedirect(req.getContextPath() + "/");
+					HttpSession session = req.getSession();
+					session.setAttribute("notifyMessage", "Note deleted permanently");
+					// resp.sendRedirect(req.getContextPath() + "/");
 				}
 				else {
 					// failed to delete the note permanently

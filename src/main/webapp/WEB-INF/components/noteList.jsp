@@ -72,27 +72,21 @@
 				if(!isDeletedNotes) {
 %>
 		<p><%= timeEdited %></p>
-		<form action="move-to-trash/<%=noteId%>" method="post">
-			<button class="noteDelete" title="Move to bin"> 
-				<img src="images/recycle-bin_24px.png" alt="Move to bin"/>
-			</button>
-		</form>
+		<button class="noteDelete" title="Move to bin" data-action="move-to-trash"> 
+			<img src="images/recycle-bin_24px.png" alt="Move to bin"/>
+		</button>
 		
 <%
 				}
 				else {
 %>
-		<form action="delete-note/<%=noteId%>" method="post">
-			<button class="noteDelete" title="Delete permanently"> 
+			<button class="noteDelete" title="Delete permanently" data-action="delete-note"> 
 				<img src="images/delete_24px.png" alt="Delete permanently"/>
 			</button>
-		</form>
-		
-		<form action="restore-note/<%=noteId%>" method="post">
-			<button class="noteDelete" title="Restore"> 
+			
+			<button class="noteDelete" title="Restore" data-action="restore-note"> 
 				<img src="images/restore_24px.png" alt="Restore"/>
 			</button>
-		</form>
 		
 <%				} %>
 		

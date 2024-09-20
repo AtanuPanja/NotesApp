@@ -12,7 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.HttpSession;
 import model.Note;
 
 @WebServlet("/empty-trash")
@@ -25,6 +25,7 @@ public class DeleteAllFromTrash extends HttpServlet {
 		
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("text/html");
+		HttpSession session = req.getSession();
 		
 		// first check if there are notes in trash
 		List<Note> trashedNotes = noteDAO.getTrashedNotes();
@@ -37,11 +38,14 @@ public class DeleteAllFromTrash extends HttpServlet {
 			
 			if (result > 0) {
 				// successfully deleted all trash notes permanently
-				resp.sendRedirect(req.getContextPath() + "/trash");
+				
+				session.setAttribute("notifyMessage", "Bin emptied");
+				// resp.sendRedirect(req.getContextPath() + "/trash");
 			}
 			else {
 				// failed to delete the trashed notes
-				out.println("<h3 style='color:red'>Couldn't delete the trashed notes</h3");
+				session.setAttribute("notifyMessage", "Couldn't delete the trashed notes");
+				
 			}
 		}
 		
