@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 header {
-	padding: 1rem;
+	padding: 1rem 1.5rem;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -16,13 +16,73 @@ nav {
 	gap: 1rem;
 }
 
-.nav-btn {
-	border: none;
+/* Making a menu drop-down */
+.menu-btn {
+	border: 2px solid black;
 	background-color: white;
+	font-weight: 600;
 	
-	box-shadow: 5px 5px 0px 0px black, 
-				1px 1px 3px 0px black;
+	transition: all 0.2s ease-in-out;
 	
-	padding: 10px 20px;
+	padding: 0.5rem 1rem;
 	cursor: pointer;
+}
+
+.menu-btn > .menu-icon {
+	font-size: 1.5rem;
+	display: none;
+}
+
+.menu-btn:hover {
+	background-color: black;
+	color: white;
+	transition: all 0.2s ease-in-out;
+}
+
+.active {
+	background-color: black;
+	color: white;
+}
+
+.menu-item-list {
+	position: absolute;
+	top: 3.4rem;
+	right: 1rem;
+	
+	z-index: 20;
+}
+
+.hide {
+	display: none;
+}
+
+.menu-item {
+	border: 1px solid black;
+	background-color: white;
+	font-weight: bold;
+	
+	padding: 1.25rem 5rem;
+	cursor: pointer;
+	
+	transition: background-color 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+	background-color: #d3d3d3;
+	transition: background-color 0.2s ease-in-out;
+}
+
+
+@media (max-width: 360px) {
+	.menu-btn > .menu-icon {
+		display: inline;
+	}
+	
+	.menu-btn > .menu-label {
+		display: none;
+	}
+	
+	.menu-btn {
+		padding: 0.1rem 0.6rem;
+	}
 }

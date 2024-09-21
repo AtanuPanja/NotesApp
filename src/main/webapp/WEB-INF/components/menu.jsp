@@ -1,7 +1,10 @@
 <header>
 	<h1>NotesApp</h1>
+	<div class="menu-item-list hide">
+		<div class="menu-item" id="home" data-context-path="<%=request.getContextPath() %>">Home</div>
+		<div class="menu-item" id="trash">Bin</div>
+	</div>
 	<nav>
-		<button class="nav-btn" id="home" data-context-path="<%=request.getContextPath() %>">Home</button>
-		<button class="nav-btn" id="trash">Bin</button>
+		<button class="menu-btn"><span class="menu-icon">&equiv;</span> <span class="menu-label">Menu</span></button>
 	</nav>
 </header>
