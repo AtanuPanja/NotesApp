@@ -20,10 +20,12 @@ trashBtn.addEventListener('click', ()=> {
 
 // menu button click, results in opening the menu, where home and bin options are shown
 menuBtn.addEventListener('click', (event)=> {
-	const target = event.target;
-	console.log(target);
-	console.log(target.contains(menuIcon));
-	console.log(target.contains(menuLabel));
+	/*
+		const target = event.target;
+		console.log(target);
+		console.log(target.contains(menuIcon));
+		console.log(target.contains(menuLabel));
+	*/
 	// when the inner menu icon or menu label are clicked, the click doesn't work
 	// for that we use event.stopPropagation
 	event.stopPropagation();

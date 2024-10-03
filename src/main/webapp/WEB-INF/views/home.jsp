@@ -7,6 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Notes</title>
+<link rel="stylesheet" type="text/css" href="css/themes.css"/>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/menu.css" />
 <link rel="stylesheet" type="text/css" href="css/notificationAlert.css"/>
@@ -19,7 +20,7 @@
 		<section class="noteSection">
 			<div class="card" id="add-new-note">
 				<div>
-					<img src="images/plus.png" alt="Create"/>
+					<img class="add-icon" src="images/plus.png" alt="Create"/>
 				</div>
 				<h1>New</h1>
 			</div>
@@ -28,6 +29,7 @@
 	</main>
 
 	<!-- Script for navigation on click -->
+	<script src="js/themes.js"></script>
 	<script src="js/menu.js"></script>
 	<script src="js/add_and_edit_navigate.js"></script>
 	<script src="js/add_remove_favorites.js"></script>

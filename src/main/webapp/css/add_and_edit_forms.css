@@ -5,6 +5,8 @@
 	    margin: 0;
 	    padding: 0;
 	    font-family: Arial, sans-serif;
+	    background-color: var(--clr-bg-body);
+	    color: var(--clr-text-body);
 	}
 	
 	/* Style the form to occupy all remaining space */
@@ -32,6 +34,9 @@
 	    border-radius: 5px;
 	    resize: none; /* Prevent resizing */
 	    overflow: hidden; /* Hide scrollbar */
+	    
+	    background-color: var(--clr-bg-form-input);
+	    color: var(--clr-text-form-input);
 	}
 	
 	/* Adjust textarea height */

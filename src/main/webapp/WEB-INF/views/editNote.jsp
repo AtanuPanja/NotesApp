@@ -14,7 +14,8 @@ I need to set the absolute path to the style.css file, as it wouldn't be applied
 Somehow, it mixes the request of style.css, with the edit-note/:id,
 to ensure separation, we use request.getContextPath() -->
 
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/add_and_edit_forms.css"/>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/themes.css"/>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/add_and_edit_forms.css"/>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/notificationAlert.css"/>
 <style>
 	.notification {
@@ -48,7 +49,7 @@ to ensure separation, we use request.getContextPath() -->
      	</section>
          
      </form>
-     
+     <script src="<%= request.getContextPath() %>/js/themes.js"></script>
      <script src="<%= request.getContextPath() %>/js/expand_textarea_show_btn.js"></script>
      <script src="<%= request.getContextPath() %>/js/handle_notification_alert.js"></script>
 </body>

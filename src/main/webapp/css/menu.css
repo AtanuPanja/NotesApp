@@ -18,8 +18,9 @@ nav {
 
 /* Making a menu drop-down */
 .menu-btn {
-	border: 2px solid black;
-	background-color: white;
+	border: 2px solid var(--clr-border-menu-btn);
+	background-color: var(--clr-bg-menu-btn);
+	color: var(--clr-text-menu-btn);
 	font-weight: 600;
 	
 	transition: all 0.2s ease-in-out;
@@ -34,14 +35,14 @@ nav {
 }
 
 .menu-btn:hover {
-	background-color: black;
-	color: white;
+	background-color: var(--clr-bg-menu-btn-hover);
+	color: var(--clr-text-menu-btn-hover);
 	transition: all 0.2s ease-in-out;
 }
 
 .active {
-	background-color: black;
-	color: white;
+	background-color: var(--clr-bg-menu-btn-active);
+	color: var(--clr-text-menu-btn-active);
 }
 
 .menu-item-list {
@@ -57,8 +58,10 @@ nav {
 }
 
 .menu-item {
-	border: 1px solid black;
-	background-color: white;
+	border: 1px solid var(--clr-border-menu-item);
+	background-color: var(--clr-bg-menu-item);
+	color: var(--clr-text-menu-item);
+	
 	font-weight: bold;
 	
 	padding: 1.25rem 5rem;
@@ -68,7 +71,7 @@ nav {
 }
 
 .menu-item:hover {
-	background-color: #d3d3d3;
+	background-color: var(--clr-bg-menu-item-hover);
 	transition: background-color 0.2s ease-in-out;
 }
 

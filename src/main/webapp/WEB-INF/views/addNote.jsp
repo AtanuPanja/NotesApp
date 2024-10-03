@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Note | Add</title>
+<link rel="stylesheet" type="text/css" href="css/themes.css"/>
 <link rel="stylesheet" href="css/add_and_edit_forms.css" />
 <link rel="stylesheet" type="text/css" href="css/notificationAlert.css"/>
 <style>
@@ -35,6 +36,7 @@
 		</section>
 
 	</form>
+	<script src="<%= request.getContextPath() %>/js/themes.js"></script>
 	<script src="<%= request.getContextPath() %>/js/expand_textarea_show_btn.js"></script>
 	<script src="<%= request.getContextPath() %>/js/handle_notification_alert.js"></script>
 </body>

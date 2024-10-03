@@ -129,3 +129,4 @@ db.name, db.username, db.password values are customizable.
       - `Empty Bin` button is now visible only when there are notes in the trash page.
       - It is hidden when no notes are in trash.
 - **Favorite**: Click on `star-icon` associated with any note to mark it as favorite. Toggle favorite by clicking again.
+- **Dark Mode**: Enable/Disable dark mode: In the navbar `Menu > Enable Dark Theme`.

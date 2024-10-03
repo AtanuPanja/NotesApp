@@ -2,6 +2,8 @@
 
 body {
 	font-family: Arial, sans-serif;
+	background-color: var(--clr-bg-body);
+	color: var(--clr-text-body);
 }
 
 * {
@@ -37,7 +39,7 @@ body {
 	flex-direction: column;
 	justify-content: space-between;
 	
-	box-shadow: 3px 3px 0px 0px black, 
+	box-shadow: 3px 3px 0px 0px grey, 
 				-1px -1px 3px 0px grey;
 }
 
@@ -85,8 +87,8 @@ as p had the maxheight. Now, both h3 and p have the max-height together.
 	height: 30px;
 	background: linear-gradient(
 					to bottom,
-					rgba(255, 255, 255, 0),
-					rgba(255, 255, 255, 1)
+					var(--clr-bg-mask-start),
+					var(--clr-bg-mask-end)
 				);
 }
 
@@ -111,9 +113,14 @@ as p had the maxheight. Now, both h3 and p have the max-height together.
 }
 
 .noteDelete {
-	color: black;
-	background-color: white;
+	background-color: var(--clr-bg-delete-icons);
 	margin: 1rem 0;
 	border: none;
 	cursor: pointer;
+}
+
+.noteDelete>img,
+.add-icon,
+.favoritesBtn > img[src="images/add-favorite_24px.png"] {
+	filter: var(--filter-image);
 }
