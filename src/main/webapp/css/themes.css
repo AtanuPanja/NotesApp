@@ -1,63 +1,73 @@
 @charset "UTF-8";
 
 :root {
-	--clr-bg-body: #ffffff;
-	--clr-text-body: #000000;
-	
-	--clr-bg-form-input: #ffffff;
-	--clr-text-form-input: #000000;
-	
-	--clr-bg-menu-btn: #ffffff;
-	--clr-text-menu-btn: #000000;
-	--clr-border-menu-btn: #000000;
-	
-	--clr-bg-menu-btn-hover: #000000;
-	--clr-text-menu-btn-hover: #ffffff;
-	
-	--clr-bg-menu-btn-active: #000000;
-	--clr-text-menu-btn-active: #ffffff;
-	
-	--clr-bg-menu-item: #ffffff;
-	--clr-text-menu-item: #000000;
-	--clr-border-menu-item: #000000;
-	
-	--clr-bg-menu-item-hover: #d3d3d3;
-	
-	--clr-bg-mask-start: rgba(255, 255, 255, 0);
-	--clr-bg-mask-end: rgba(255, 255, 255, 1);
-	
-	--clr-bg-delete-icons: #ffffff;
-	
-	--filter-image: invert(0);
+	--clr-bg-body: #eeeeee;
+    --clr-text-body: #000000;
+    
+    --clr-bg-form-input: #eeeeee;
+    --clr-text-form-input: #000000;
+    --clr-border-form-input: #000000;
+    
+    --clr-bg-header: #d3d3d3;
+    
+    --clr-bg-menu-btn: #d3d3d3;
+    --clr-text-menu-btn: #000000;
+    --clr-border-menu-btn: #000000;
+    
+    --clr-bg-menu-btn-hover: #000000;
+    --clr-text-menu-btn-hover: #d3d3d3;
+    
+    --clr-bg-menu-btn-active: #000000;
+    --clr-text-menu-btn-active: #d3d3d3;
+    
+    --clr-bg-menu-item: #d3d3d3;
+    --clr-text-menu-item: #000000;
+    --clr-border-menu-item: #999999;
+    
+    --clr-bg-menu-item-hover: #999999;
+    
+    --clr-border-menu-section: #000000;
+    
+    --clr-bg-mask-start: rgba(238, 238, 238, 0);
+    --clr-bg-mask-end: rgba(238, 238, 238, 1);
+    
+    --clr-bg-delete-icons: #eeeeee;
+    
+    --filter-image: invert(0);
 }
 
 .darkmode {
-	--clr-bg-body: #000000;
+	--clr-bg-body: #141931;
 	--clr-text-body: #ffffff;
 	
-	--clr-bg-form-input: #000000;
+	--clr-bg-form-input: #141931;
 	--clr-text-form-input: #ffffff;
+	--clr-border-form-input: #ffffff;
 	
-	--clr-bg-menu-btn: #000000;
+	--clr-bg-header: #040011;
+	
+	--clr-bg-menu-btn: #040011;
 	--clr-text-menu-btn: #ffffff;
 	--clr-border-menu-btn: #ffffff;
 	
 	--clr-bg-menu-btn-hover: #ffffff;
-	--clr-text-menu-btn-hover: #000000;
+	--clr-text-menu-btn-hover: #040011;
 	
 	--clr-bg-menu-btn-active: #ffffff;
-	--clr-text-menu-btn-active: #000000;
+	--clr-text-menu-btn-active: #040011;
 	
-	--clr-bg-menu-item: #000000;
+	--clr-bg-menu-item: #040011;
 	--clr-text-menu-item: #ffffff;
-	--clr-border-menu-item: #ffffff;
+	--clr-border-menu-item: #2b2b2b;
 	
 	--clr-bg-menu-item-hover: #2b2b2b;
 	
-	--clr-bg-mask-start: rgba(0, 0, 0, 0);
-	--clr-bg-mask-end: rgba(0, 0, 0, 1);
+	--clr-border-menu-section: #ffffff;
 	
-	--clr-bg-delete-icons: #000000;
+	--clr-bg-mask-start: rgba(20, 25, 49, 0);
+	--clr-bg-mask-end: rgba(20, 25, 49, 1);
+	
+	--clr-bg-delete-icons: #141931;
 	
 	--filter-image: invert(1);
 }

@@ -1,15 +1,18 @@
 const textareas = document.querySelectorAll('textarea');
 const saveButton = document.getElementById('save');
 
-function handleTextAreas(textareas) {
-	textareas.forEach(element => {
+
+function updateTextAreas(textareas) {
+	textareas.forEach(textarea => {
+		adjustTextArea(textarea);
 		
-		adjustTextArea(element);
-		
-		element.addEventListener('input', ()=> {
-			adjustTextArea(element);
+		textarea.addEventListener('input', (event)=> {
+			
+			adjustTextArea(textarea);
+			
 			saveButton.style.display = 'block';
 		});
+		
 	});
 }
 
@@ -19,7 +22,7 @@ function adjustTextArea(textarea) {
 }
 
 // adjust all textareas either by content size or on input, onload
-handleTextAreas(textareas);
+updateTextAreas(textareas);
 
 // do the same adjustment with the textareas, when resized
-window.addEventListener('resize', ()=> handleTextAreas(textareas));
+window.addEventListener('resize', ()=> updateTextAreas(textareas));

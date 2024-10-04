@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Note | Edit</title>
 <!-- Since I am using RequestDispatcher to redirect to EditTodo controller to editTodo.jsp,
@@ -36,7 +37,7 @@ to ensure separation, we use request.getContextPath() -->
 
      <form action="<%= id %>" method="post">
      	<section class="pageHeader">
-     		<h1>Edit Note</h1>
+     		<h1>View/Edit Note</h1>
      		<button id="save">Save changes</button>
      	</section>
      	
@@ -44,7 +45,7 @@ to ensure separation, we use request.getContextPath() -->
      		<!-- If maxlength is not mentioned, then any number of characters
      		are allowed from the frontend. However on submission, error occurs
      		due to the size constraint in the database. -->
-     		<textarea class="title" placeholder="Title" name="title" maxlength=255><%=title %></textarea><br/><br/>
+     		<textarea class="title" placeholder="Title" name="title" maxlength=255 rows=1><%=title %></textarea><br/><br/>
          	<textarea class="content" placeholder="Content" name="content"><%=content %></textarea>
      	</section>
          

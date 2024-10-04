@@ -6,8 +6,9 @@ header {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	gap: 1rem;
-	border-bottom: 2px solid grey;
 	margin-bottom: 2rem;
+	
+	background-color: var(--clr-bg-header);
 }
 
 nav {
@@ -57,14 +58,18 @@ nav {
 	display: none;
 }
 
+.menu-item-list > section {
+	border-bottom: 1px solid var(--clr-border-menu-section);
+}
+
 .menu-item {
-	border: 1px solid var(--clr-border-menu-item);
+	border-bottom: 1px solid var(--clr-border-menu-item);
 	background-color: var(--clr-bg-menu-item);
 	color: var(--clr-text-menu-item);
 	
 	font-weight: bold;
 	
-	padding: 1.25rem 5rem;
+	padding: 1.25rem 2rem;
 	cursor: pointer;
 	
 	transition: background-color 0.2s ease-in-out;
