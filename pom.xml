@@ -15,6 +15,15 @@
 	    <artifactId>mysql-connector-j</artifactId>
 	    <version>8.0.33</version>
 	</dependency>
+	
+	<!-- servlet packages - jakarta.servlet - needed when not being run from eclipse -->
+	<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-servlet-api -->
+	<dependency>
+	    <groupId>org.apache.tomcat</groupId>
+	    <artifactId>tomcat-servlet-api</artifactId>
+	    <version>11.0.0</version>
+	</dependency>
+
   		
     <dependency>
       <groupId>junit</groupId>
